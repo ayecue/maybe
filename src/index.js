@@ -7,7 +7,7 @@ function maybe(value, handlers) {
     const isNothing = () => handlers.isNothing(value);
     const maybeInterface = {
         isNothing: isNothing,
-        is: (fn) => fn(value) ? maybeInterface : morph(),
+        is: (fn) => !isNothing() && fn(value) ? maybeInterface : morph(),
         map: (fn) => isNothing() ? maybeInterface : morph(fn(value)),
         flatMap: (fn) => isNothing() ? null : fn(value),
         forEach: (fn) => {

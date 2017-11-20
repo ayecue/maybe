@@ -1,6 +1,6 @@
 {
   "name": "another-maybe",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Another maybe library which thinks it got it all.",
   "main": "src/index.js",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "https://github.com/ayecue/maybe.git"
   },
   "scripts": {
-    "test": "mocha 'test/**/*.test.js'"
+    "test": "./node_modules/.bin/mocha 'test/**/*.test.js'"
   },
   "dependencies": {},
   "devDependencies": {
