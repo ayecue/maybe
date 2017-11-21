@@ -11,7 +11,7 @@ describe('Maybe provider', function () {
         const value3 = maybe(undefined).get();
 
         assert.equals(value1, 'test');
-        assert.equals(value2, null);
+        assert.equals(value2, undefined);
         assert.equals(value3, undefined);
     });
 
@@ -94,11 +94,11 @@ describe('Maybe provider', function () {
             .flatMap((v) => v + '2');
 
         assert.equals(value1, 'test1');
-        assert.equals(value2, null);
+        assert.equals(value2, undefined);
     });
 
-    it('doing some async operation', async function () {
-        const test = async () => delay(200);
+    it('doing basic async operations', async function () {
+        const test = async () => delay(10);
         const result1 = await maybe('test')
             .map(async (v) => {
                 await test();
@@ -126,5 +126,47 @@ describe('Maybe provider', function () {
 
         assert.equals(result1, 'test');
         assert.equals(result2, 'alt2');
+    });
+
+    it('doing advanced async operations', async function () {
+        const test = async () => delay(10);
+        let runFirstForEach = false;
+        let runSecondForEach = false;
+        const result1 = await maybe(1)
+            .map(async (v) => {
+                await test();
+
+                return v + 1;
+            })
+            .is(async (v) => {
+                return v === 1;
+            })
+            .orElse(async () => {
+                await test();
+
+                return  0;
+            })
+            .forEach((v) => {
+                runFirstForEach = true;
+            })
+            .map(async (v) => {
+                await test();
+
+                return undefined;
+            })
+            .forEach((v) => {
+                runSecondForEach = true;
+            })
+            .orValue(2)
+            .map(async (v) => {
+                await test();
+
+                return v + 1;
+            })
+            .get();
+
+        assert.equals(result1, 3);
+        assert.equals(runFirstForEach, true);
+        assert.equals(runSecondForEach, false);
     });
 });
