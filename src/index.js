@@ -1,6 +1,7 @@
 'use strict';
 
 const defaultFuncs = require('./default');
+const defaultProvider = provider();
 
 function maybe(value, handlers) {
     const {isPromise} = handlers;
@@ -55,11 +56,11 @@ function asyncMaybe(value, handlers) {
     });
 }
 
-function provider(handlers) {
+function provider(handlers = {}) {
     return (value) => {
-        return maybe(value, handlers);
+        return maybe(value, Object.assign({}, defaultFuncs, handlers));
     };
 }
 
-module.exports = provider(defaultFuncs);
-exports.provider = provider;
+defaultProvider.provider = provider;
+module.exports = defaultProvider;

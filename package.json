@@ -1,7 +1,7 @@
 {
   "name": "another-maybe",
-  "version": "0.0.3",
-  "description": "Another maybe library which thinks it got it all.",
+  "version": "0.0.4",
+  "description": "Maybe monad for JavaScript.",
   "main": "src/index.js",
   "repository": {
     "type": "git",
@@ -10,6 +10,15 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha 'test/**/*.test.js'"
   },
+  "author": "swe <soerenwehmeier@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "monad",
+    "functional",
+    "optional",
+    "maybe",
+    "null"
+  ],
   "dependencies": {},
   "devDependencies": {
     "mocha": "^3.2.0",
