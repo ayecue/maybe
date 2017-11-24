@@ -1,6 +1,6 @@
 {
   "name": "another-maybe",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Maybe monad for JavaScript.",
   "main": "src/index.js",
   "repository": {
@@ -17,7 +17,12 @@
     "functional",
     "optional",
     "maybe",
-    "null"
+    "null",
+    "async",
+    "promise",
+    "asynchronous",
+    "sync",
+    "synchronous"
   ],
   "dependencies": {},
   "devDependencies": {
